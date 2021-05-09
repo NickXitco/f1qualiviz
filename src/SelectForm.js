@@ -27,22 +27,33 @@ export default class SelectForm extends React.Component {
     }
 
     render() {
+        const years = [];
+        const rounds = [];
+
+        for (let i = 1970; i < 2022; i++) {
+            years.push(i);
+        }
+
+        for (let i = 1; i < 23; i++) {
+            rounds.push(i);
+        }
+
+        const selectOptions = years.map(year => <option key={year} value={year}>{year}</option>);
+        const selectRounds = rounds.map(round => <option key={round} value={round}>{round}</option>);
+
         return (
             <form onSubmit={this.handleSubmit}>
                 <label>
                     Year
                     <select value={this.state.yearValue} onChange={this.handleYearChange}>
-                        <option value="2020">2020</option>
-                        <option value="2021">2021</option>
+                        {selectOptions}
                     </select>
                 </label>
 
                 <label>
                     Round
                     <select value={this.state.roundValue} onChange={this.handleRoundChange}>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
+                        {selectRounds}
                     </select>
                 </label>
                 <input type="submit" value="Submit" />
